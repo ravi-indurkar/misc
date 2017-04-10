@@ -1,0 +1,44 @@
+SHELL=/bin/bash
+MAILTO="ravi.indurkar@oracle.com"
+CRON_TZ=US/Pacific
+BASH_ENV="$HOME/.bashrc"
+
+
+5  0 *  *  *    /usr/bin/nohup /usr/bin/tmpwatch -faMu 5d /nfs/raid/nightly_logs/coldstart /nfs/raid/nightly_logs/bvt_log /nfs/raid/nightly_logs/raid-smoke &
+
+
+5  0 *  *  *    /usr/bin/nohup /usr/bin/tmpwatch -faMu 3d /nfs/raid/nightly_logs/regressiontest &
+
+
+10 * *  *  *    /usr/bin/nohup /nfs/raid/bin/df-check axiom_raid_us_grp@oracle.com,don.sawdy@oracle.com,paul.remley@oracle.com 80 /nfs/raid
+
+
+#caaxm034 1:30 oddDate bvt raid-r06-nightly
+#coaxm127 1:10 oddDate bvt raid-r06-nightly
+10 1 1-31/2 * * /usr/bin/nohup /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r06-nightly/src/slammer/raid/Sidrat/bin/raid-smoke /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r06-nightly/src/slammer/raid/Sidrat/bin/raid-nightly.env &
+
+#caaxm034 1:30 evenDate fofb raid-r06-nightly
+#coaxm127 1:10 evenDate fofb raid-r06-nightly
+10 1 2-31/2 * * /usr/bin/nohup /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r06-nightly/src/slammer/raid/Sidrat/bin/raid-smoke /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r06-nightly/src/slammer/raid/Sidrat/bin/raid-fofb.env &
+
+#caaxm044  2:30 concurrent raid-r06-nightly-2
+30 2 * * *      /usr/bin/nohup /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r06-nightly-2/src/slammer/raid/Sidrat/bin/raid-smoke /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r06-nightly-2/src/slammer/raid/Sidrat/bin/raid-caaxm044.env &
+
+
+#ca-axnpsim-03+04 1:20 everyday raid-r06-regr-test
+10 1 * * *      /usr/bin/nohup /nfs/raid/bin/cleanup-raid-r06-regr-testbed
+20 1 * * *      /usr/bin/nohup /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r06-regr-test/src/slammer/raid/Sidrat/bin/raid-smoke /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r06-regr-test/src/slammer/raid/Sidrat/bin/raid-regression.env &
+
+20 1 * * *      /usr/bin/nohup /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r06-regr-test/src/slammer/raid/Sidrat/bin/raid-smoke /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r06-regr-test/src/slammer/raid/Sidrat/bin/raid-regression.env &
+
+
+#ca-axnpsim-01+02 1:40 everyday raid-r0602-regr-test
+#co-axnpsim-15+16 1:40 everyday raid-r0602-regr-test
+10 1 * * *      /usr/bin/nohup /nfs/raid/bin/cleanup-raid-r0602-regr-testbed
+40 1 * * *      /usr/bin/nohup /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r0602-regr-test/src/slammer/raid/Sidrat/bin/raid-smoke /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r0602-regr-test/src/slammer/raid/Sidrat/bin/raid-regression-r0602.env &
+
+#co-axnpsim-15+16  2:30 everyday maint-ops-regr-test
+#10 2 * * *      /usr/bin/nohup /nfs/raid/bin/cleanup-maint-ops-regr-testbed
+#  30 2 * * *      /usr/bin/nohup /nfs/caol6304-build1/rindurka/raid_nightly_builds/maint-ops-regr-test/src/slammer/raid/Sidrat/bin/raid-smoke /nfs/caol6304-build1/rindurka/raid_nightly_builds/maint-ops-regr-test/src/slammer/raid/Sidrat/bin/raid-regr-maint-ops.env &
+
+

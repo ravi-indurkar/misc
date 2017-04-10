@@ -1,0 +1,11 @@
+#!/bin/sh
+for i in `cat ~/ex/fi`
+do
+
+echo $i
+cp $i $i.ORIG_TREE
+chmod 777 $i
+chmod 777 $i.ORIG_TREE
+
+done
+

@@ -1,0 +1,60 @@
+#!/bin/sh
+vi ~/bin/mysh
+echo ==================^ C   ^ C    ^C
+read xxx
+for i in `cat ~/ex/fi`
+do
+echo $i
+
+
+# MOVE FROM ONE TREE TO ANOTHER
+# cp /home/rindurka/work.r7/mainline2/src/slammer/$i.RAVIII_1 /home/rindurka/work.r7/mainline1/src/slammer/$i.RAVIII_1
+
+# use ORIGINAL
+# cp $i.ORIG_TREE $i
+# chmod 444 $i
+# p4 sync -f $i
+# p4 edit $i
+
+# MAKE A NEW COPY to RAVIII_
+# cp $i $i.RAVIII_1
+# cp $i $i.ORIG_TREE
+# chmod 777 $i
+
+# use my latest MODIFICTIONS
+# cp $i.RAVIII_1 $i
+
+## diff-my-with-their-LATEST-from-MAINLINE   
+## p4merge sandbox2/src/slammer/$i.ORIG_TREE /home/build/builds/axiom/060200-007400/src/slammer/$i
+## tkdiff sandbox2/src/slammer/$i.ORIG_TREE /home/build/builds/axiom/060200-007400/src/slammer/$i
+
+## diff-my-with-their-LATEST-from-SANDBOX   
+## p4merge sandbox2/src/slammer/$i.ORIG_TREE /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r06-nightly-2/src/slammer/$i
+## cp /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r06-nightly-2/src/slammer/$i  ~/ex/tmp/x.cpp
+## tkdiff sandbox2/src/slammer/$i.ORIG_TREE /nfs/caol6304-build1/rindurka/raid_nightly_builds/raid-r06-nightly-2/src/slammer/$i
+
+
+## diff my work change with myself-ORIG
+## diff sandbox2/src/slammer/$i.ORIG_TREE sandbox2/src/slammer/$i > ~/ex/tmp/y
+## cp sandbox2/src/slammer/$i ~/ex/tmp/x.cpp
+## tkdiff sandbox2/src/slammer/$i.ORIG_TREE sandbox2/src/slammer/$i
+
+##diff /home/rindurka/work/sandbox/src/slammer/$i.ORIG_TREE /home/rindurka/work.r7/sandbox.r7/src/slammer/$i.ORIG_TREE
+##tkdiff $i $i.ORIG_TREE
+
+# 
+# ls -al sandbox1/src/slammer/$i.ORIG_TREE 
+# echo =====================
+# ls -al sandbox2/src/slammer/$i.ORIG_TREE
+# echo =====================
+# ls -al /home/build/builds/axiom/060200-007400/src/slammer/$i
+# 
+
+echo ==============================RAVIIIIIIIIIIIIII==========================
+read xxx
+
+done
+
+vi ~/bin/mysh
+
+
